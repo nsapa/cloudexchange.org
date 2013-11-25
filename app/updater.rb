@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.join(File.dirname(__FILE__), 'exchange')
+require '/usr/home/cloudexchange/cloudexchange.org/app/exchange'
 
 exchange = Exchange.new
 exchange.update_prices

@@ -1,3 +1,6 @@
+## This was not used for UnexpectedConsequence.byme.at because the OS is FreeBSD
+## And it looks like these instructions are missing a lot of things ...
+
 # preparation
 apt-get update
 apt-get upgrade

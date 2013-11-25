@@ -6,16 +6,24 @@ require 'AWS'
 class Exchange
 
   def regular_price(which)
-    regular_price_map[which]
+    if regular_price_map[which].nil?
+	0
+    else
+	regular_price_map[which]
+    end
   end
 
   def spot_price(which)
-    spot_price_map[which]
+    if spot_price_map[which].nil?
+	0
+    else
+	spot_price_map[which]
+    end
   end
 
   def update_prices
     current = {}
-    ['us-east-1', 'us-west-1', 'eu-west-1', 'ap-southeast-1'].each do |region|
+    ['us-east-1', 'us-west-1', 'us-west-2', 'eu-west-1', 'sa-east-1', 'ap-northeast-1', 'ap-southeast-1', 'ap-southeast-2'].each do |region|
       fetch_region(region)
       data = parse_region(region)
       store_region(region, data)
@@ -53,7 +61,7 @@ private
   end
 
   def ec2(region)
-    id, key = *open('.amazon').read.split(':')
+    id, key = *open('/usr/home/nico/.amazon').read.split(':')
     server = "#{region}.ec2.amazonaws.com"
     AWS::EC2::Base.new(:access_key_id => id, :secret_access_key => key, :server => server)
   end
